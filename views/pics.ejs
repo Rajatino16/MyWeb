@@ -1,0 +1,49 @@
+<%- include ("partials/header") %> 
+
+<div class="container">
+
+  <div class="jumbotron">
+    <h1><i class="fa fa-camera-retro"></i></span>The Image Gallery </h1>
+	<p>A bunch of beautiful images that I didn't take(except for the first one!)</p>
+		<a class="btn btn-primary btn-large" href="/pics/newPic">Add New Image</a>
+    </p>
+  </div>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap;" >
+      <% Pic.forEach(function(pics){ %>
+          <div class="col-md-4 col-sm-6">
+              <div class="thumbnail">
+                 <img src="<%= pics.image %>">
+				  <div class="caption">
+                       <h4><%= pics.Title %></h4>
+                   </div>
+                   <p>
+                       <a href="/pics/<%= pics._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+              </div>
+          </div>
+      <% }); %>
+  </div>
+
+    <!-- <div class="row">
+      <div class="col-lg-4 col-sm-6">
+        <div class="thumbnail">
+          <img src="http://i.imgur.com/qK42fUu.jpg">
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1435771112039-1e5b2bcad966?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1442406964439-e46ab8eff7c4?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+        </div>
+      </div> -->
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<%- include ("partials/footer") %> 

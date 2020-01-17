@@ -34,6 +34,14 @@ app.get("/about", function(req, res){
    res.render("about");
 });
 
+app.get("/login", function(req, res){
+   res.render("login");
+});
+
+app.get("/register", function(req, res){
+   res.render("register");
+});
+
 app.post("/pics/newPic", function(req, res){
     // get data from form and add to pics array
 	var name = req.body.Title ;
@@ -62,7 +70,7 @@ app.get("/pics/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
-            console.log(foundPic)
+            // console.log(foundPic)
             //render show template with that pic
             res.render("pictures/show", {pict: foundPic});
         }
@@ -70,23 +78,24 @@ app.get("/pics/:id", function(req, res){
 });
 
 // DESTROY CAMPGROUND ROUTE
-// // app.delete("/:id", function(req, res){
-// //    Pic.findByIdAndRemove(req.params.id, function(err){
-// //       if(err){
-// //           res.redirect("/pics");
-// //       } else {
-// //           res.redirect("/pics");
-// //       }
-// //    });
-// // });
 app.delete("/:id", function(req, res){
-var myquery = { _id: re.params.id }
-  Pic.collection("pics").deleteOne(myquery, function(err, obj) {
-    if (err) throw err;
-    console.log("deleted");
-    res.redirect("/pics");
-  });
+   Pic.findByIdAndRemove(req.params.id, function(err){
+      if(err){
+		  
+          res.redirect("/pics");
+      } else {
+          res.redirect("/pics");
+      }
+   });
 });
+// app.delete("/:id", function(req, res){
+// var myquery = { _id: re.params.id }
+//   Pic.collection("pics").deleteOne(myquery, function(err, obj) {
+//     if (err) throw err;
+//     console.log("deleted");
+//     res.redirect("/pics");
+//   });
+// });
 
 
  app.listen(process.env.PORT, process.env.IP, function(){

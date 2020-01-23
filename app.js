@@ -78,7 +78,7 @@ app.get("/pics/:id", function(req, res){
 });
 
 // DESTROY CAMPGROUND ROUTE
-app.delete("/:id", function(req, res){
+app.delete("/pics/:id", function(req, res){
    Pic.findByIdAndRemove(req.params.id, function(err){
       if(err){
 		  

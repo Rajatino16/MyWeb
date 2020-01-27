@@ -17,10 +17,33 @@
                     <h4 class="pull-right">Can add anything over here like $9.00/night</h4>
                     <h4><a><%=pict.name%></a></h4>
                     <p><%= pict.description %></p>
+
 					<form id="delete-form" action="/pics/<%=pict._id %>?_method=DELETE" method="POST">
                                 <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                            </form>
+                    </form>
                 </div>
+            </div>
+			<div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/pics/<%= pict._id %>/comments/new">Add New Comment</a>
+                </div>
+                <hr>
+                <% pict.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author %></strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p>
+                                <%= comment.text %> 
+                            </p>
+							<a class="btn btn-xs btn-warning" 
+                               href="/pics/<%=pict._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/pics/<%=pict._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
 	    </div>
 	</div>
